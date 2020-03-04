@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-cover-scroller',
   templateUrl: './cover-scroller.component.html',
   styleUrls: ['./cover-scroller.component.scss']
 })
+
 export class CoverScrollerComponent implements OnInit {
   private _cover: String = "";
   private _title: String = "";
