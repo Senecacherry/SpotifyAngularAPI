@@ -76,7 +76,7 @@ export class SpotifySearchComponent implements OnInit {
       }).done(function (data) {
         _self.Results = [];
         for (var i = 0; i < data.tracks.items.length; i++) {
-          _self.Results.push({ title: data.tracks.items[i].album.name, cover: data.tracks.items[i].album.images[0].url, subtitle: "Senecas stuff" });
+          _self.Results.push({ title: data.tracks.items[i].album.name, cover: data.tracks.items[i].album.images[0].url, subtitle: data.tracks.items[i].artists[0].name });
         }
         // $("#searchResult").html(JSON.stringify(data));
       });

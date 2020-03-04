@@ -1,7 +1,10 @@
-<div *ngFor="let result of Results">
-    <app-cover-scroller [title]="result.title" [subtitle]="result.subtitle" [cover]="result.cover"></app-cover-scroller>
-</div>
+<mat-toolbar class="appToolbar"><div class="toolbarText">Spotify based on the weather</div></mat-toolbar>
+<mat-grid-list cols="4" rowHeight="3:5">
+    <mat-grid-tile *ngFor="let result of Results">
+        <app-cover-scroller [title]="result.title" [subtitle]="result.subtitle" [cover]="result.cover"></app-cover-scroller>
+    </mat-grid-tile>
+</mat-grid-list>
 
-<button (click)="Search()">Search</button>
+<button mat-raised-button (click)="Search()">Search</button>
 
 <div id="searchResult"></div>
