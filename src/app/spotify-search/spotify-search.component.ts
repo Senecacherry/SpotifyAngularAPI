@@ -29,7 +29,7 @@ export class SpotifySearchComponent implements OnInit {
       _self.accessToken = fragment;
     });
     this.Auth();
-    this.Results = [{ title: "Swack", subtitle: "Boom", cover: "https://material.angular.io/assets/img/examples/shiba2.jpg" }];
+    this.Results = [{ title: "Here For Wobbles", subtitle: "wobble wobble", cover: "https://st3.depositphotos.com/5266903/18432/v/450/depositphotos_184324426-stock-illustration-music-notes-fountain-stream.jpg" }];
   }
   private getToken(): any {
     return $.ajax({
