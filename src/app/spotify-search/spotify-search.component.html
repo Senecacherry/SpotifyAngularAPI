@@ -1,7 +1,8 @@
 <mat-toolbar class="appToolbar"><div class="toolbarText">Weather Tunes</div></mat-toolbar>
 <mat-grid-list cols="4" rowHeight="3:5">
     <mat-grid-tile *ngFor="let result of Results">
-        <app-cover-scroller [title]="result.title" [subtitle]="result.subtitle" [cover]="result.cover"></app-cover-scroller>
+        <app-cover-scroller [title]="result.title" [subtitle]="result.subtitle" [cover]="result.cover" [accessToken]="accessToken" 
+        [contextUri]="result.uri" [deviceID]="DeviceID"></app-cover-scroller>
     </mat-grid-tile>
 </mat-grid-list>
 

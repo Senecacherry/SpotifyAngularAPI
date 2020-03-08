@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-cover-scroller',
@@ -9,6 +10,10 @@ export class CoverScrollerComponent implements OnInit {
   private _cover: String = "";
   private _title: String = "";
   private _subtitle: String = "";
+  private _accessToken: String = "";
+  private _contextUri: String = "";
+  private _deviceID: String = "";
+
   @Input()
   set title(title: String) {
     this._title = title;
@@ -28,7 +33,46 @@ export class CoverScrollerComponent implements OnInit {
   }
   get cover(): String { return this._cover; }
 
+  @Input()
+  set accessToken(accessToken: String) {
+    this._accessToken = accessToken;
+  }
+  get accessToken(): String { return this._accessToken; }
+
+  @Input()
+  set contextUri(contextUri: String) {
+    this._contextUri = contextUri;
+  }
+  get contextUri(): String { return this._contextUri; }
+
+  @Input()
+  set deviceID(deviceID: String) {
+    this._deviceID = deviceID;
+  }
+  get deviceID(): String { return this._deviceID; }
+
   ngOnInit(): void {
   }
+
+  public playTrack(): any {
+    var json = JSON.stringify({
+      context_uri: this.contextUri,
+      offset: {
+        position: 0
+      },
+      position_ms: 0
+    });
+     $.ajax({
+      url: "https://api.spotify.com/v1/me/player/play?device_id=" + this.deviceID,
+      method: "PUT",
+      headers: {
+        'Authorization': 'Bearer ' + this.accessToken,
+        'Accept': "application/json",
+        'Content-Type': "application/json;charset=UTF-8"
+    },
+      data: json
+    });
+  }
+
 
 }

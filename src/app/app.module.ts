@@ -8,13 +8,15 @@ import { CoverScrollerComponent } from './cover-scroller/cover-scroller.componen
 import { SpotifySearchComponent } from './spotify-search/spotify-search.component';
 import { GridListComponent } from './grid-list/grid-list.component';
 import { MaterialModule } from './material-module';
+import { SpotifyPlayerComponent } from './spotify-player/spotify-player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoverScrollerComponent,
     SpotifySearchComponent,
-    GridListComponent
+    GridListComponent,
+    SpotifyPlayerComponent
   ],
   imports: [
     BrowserModule,
