@@ -91,7 +91,6 @@ export class SpotifySearchComponent implements OnInit {
 
       // Ready
       player.addListener('ready', ({ device_id }) => {
-        debugger;
         _self.DeviceID = device_id;
         console.log('Ready with Device ID', device_id);
       });
@@ -113,7 +112,7 @@ export class SpotifySearchComponent implements OnInit {
         url: 'https://api.spotify.com/v1/search?q=electronic&type=track',
         method: 'GET',
         beforeSend: function (xhr) {
-          xhr.setRequestHeader('Authorization', 'Bearer ' + _self.accessToken.split("=")[1]);
+          xhr.setRequestHeader('Authorization', 'Bearer ' + _self.accessToken);
         }
       }).done(function (data) {
         _self.Results = [];

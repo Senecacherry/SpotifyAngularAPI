@@ -62,17 +62,75 @@ export class CoverScrollerComponent implements OnInit {
       },
       position_ms: 0
     });
-     $.ajax({
+    $.ajax({
       url: "https://api.spotify.com/v1/me/player/play?device_id=" + this.deviceID,
       method: "PUT",
       headers: {
         'Authorization': 'Bearer ' + this.accessToken,
         'Accept': "application/json",
         'Content-Type': "application/json;charset=UTF-8"
-    },
+      },
       data: json
     });
   }
 
+  public pauseTrack(): any {
+    var json = JSON.stringify({
+      context_uri: this.contextUri,
+      offset: {
+        position: 0
+      },
+      position_ms: 0
+    });
+    $.ajax({
+      url: 'https://api.spotify.com/v1/me/player/pause',
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + this.accessToken,
+        'Accept': "application/json",
+        'Content-Type': "application/json;charset=UTF-8"
+      },
+      data: json
+    });
+  }
 
+  public nextTrack(): any {
+    var json = JSON.stringify({
+      context_uri: this.contextUri,
+      offset: {
+        position: 0
+      },
+      position_ms: 0
+    });
+    $.ajax({
+      url: 'https://api.spotify.com/v1/me/player/next',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + this.accessToken,
+        'Accept': "application/json",
+        'Content-Type': "application/json;charset=UTF-8"
+      },
+      data: json
+    });
+  }
+
+  public previousTrack(): any {
+    var json = JSON.stringify({
+      context_uri: this.contextUri,
+      offset: {
+        position: 0
+      },
+      position_ms: 0
+    });
+    $.ajax({
+      url: 'https://api.spotify.com/v1/me/player/previous',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + this.accessToken,
+        'Accept': "application/json",
+        'Content-Type': "application/json;charset=UTF-8"
+      },
+      data: json
+    });
+  }
 }

@@ -12,9 +12,10 @@
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button>Previous</button>
-            <button mat-button (click)="playTrack()">Play/Pause</button>
-            <button mat-button>Next</button>
+            <button mat-button (click)="previousTrack();" ><mat-icon>skip_previous</mat-icon></button>
+            <button mat-button (click)="playTrack();"><mat-icon>play_arrow</mat-icon></button>
+            <button mat-button (click)="pauseTrack();"><mat-icon>pause</mat-icon></button>
+            <button mat-button (click)="nextTrack();" ><mat-icon>skip_next</mat-icon></button>
         </mat-card-actions>
     </mat-card>
 
