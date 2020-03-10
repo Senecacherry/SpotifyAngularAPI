@@ -8,14 +8,23 @@
         <img mat-card-image [src]="cover" alt="Photo of a Storm">
         <mat-card-content>
             <p>
-                The purpose of this app is to provide a selection of music based on what the weather API returns. Hit the search button to get started!
+                The purpose of this app is to provide a selection of music based on what the weather API returns. Hit
+                the search button to get started!
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button (click)="previousTrack();" ><mat-icon>skip_previous</mat-icon></button>
-            <button mat-button (click)="playTrack();"><mat-icon>play_arrow</mat-icon></button>
-            <button mat-button (click)="pauseTrack();"><mat-icon>pause</mat-icon></button>
-            <button mat-button (click)="nextTrack();" ><mat-icon>skip_next</mat-icon></button>
+            <button mat-button (click)="previousTrack();">
+                <mat-icon>skip_previous</mat-icon>
+            </button>
+            <button mat-button (click)="playTrack();">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+            <button mat-button (click)="pauseTrack();">
+                <mat-icon>pause</mat-icon>
+            </button>
+            <button mat-button (click)="nextTrack();">
+                <mat-icon>skip_next</mat-icon>
+            </button>
         </mat-card-actions>
     </mat-card>
 
