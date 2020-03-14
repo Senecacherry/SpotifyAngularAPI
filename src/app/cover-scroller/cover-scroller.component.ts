@@ -13,6 +13,8 @@ export class CoverScrollerComponent implements OnInit {
   private _accessToken: String = "";
   private _contextUri: String = "";
   private _deviceID: String = "";
+  private _track_number: Number = 0;
+  private _track_features: any = {key: ""};
 
   @Input()
   set title(title: String) {
@@ -51,6 +53,18 @@ export class CoverScrollerComponent implements OnInit {
   }
   get deviceID(): String { return this._deviceID; }
 
+  @Input()
+  set track_number(track_number: Number) {
+    this._track_number= track_number;
+  }
+  get track_number(): Number { return this._track_number; }
+
+  @Input()
+  set track_features(track_features: any) {
+    this._track_features = track_features;
+  }
+  get track_features(): any { return this._track_features; }
+
   ngOnInit(): void {
   }
 
@@ -58,7 +72,7 @@ export class CoverScrollerComponent implements OnInit {
     var json = JSON.stringify({
       context_uri: this.contextUri,
       offset: {
-        position: 0
+        position: this.track_number
       },
       position_ms: 0
     });

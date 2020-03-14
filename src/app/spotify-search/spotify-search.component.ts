@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
 declare let Spotify: any;
@@ -34,10 +34,10 @@ export class SpotifySearchComponent implements OnInit {
   ngOnInit(): void {
     var _self = this;
     this.route.fragment.subscribe((fragment: string) => {
-      _self.accessToken = fragment.split("=")[1];
+      _self.accessToken = fragment.split("&")[0].split("=")[1];
     });
     this.Auth();
-    this.Results = [{ title: "Here For Wobbles", subtitle: "wobble wobble", cover: "https://st3.depositphotos.com/5266903/18432/v/450/depositphotos_184324426-stock-illustration-music-notes-fountain-stream.jpg" }];
+    this.Results = [];
   }
   private getToken(): any {
     return $.ajax({
@@ -104,7 +104,7 @@ export class SpotifySearchComponent implements OnInit {
       player.connect();
   }
 
-  public Search() {
+  public Search(options) {
     var _self = this;
     if (_self.accessToken) {
       _self.InitPlayer();
@@ -116,8 +116,27 @@ export class SpotifySearchComponent implements OnInit {
         }
       }).done(function (data) {
         _self.Results = [];
+
         for (var i = 0; i < data.tracks.items.length; i++) {
-          _self.Results.push({ title: data.tracks.items[i].album.name, cover: data.tracks.items[i].album.images[0].url, subtitle: data.tracks.items[i].artists[0].name, uri: data.tracks.items[i].album.uri });
+          let item = data.tracks.items[i];
+          if(options && options.keyMin !== 'undefined' && options.keyMax !== 'undefined'){
+
+            var id = item.id;
+            var context_uri = item.album.uri;
+
+            _self.trackBreakdown(context_uri , id).done(function(features) {
+              if(features.key < options.keyMin || features.key > options.keyMax) {
+                return;
+              }
+              _self.Results.push({ title: item.album.name, cover: item.album.images[0].url, 
+                subtitle: item.artists[0].name, uri: item.album.uri, track_number: item.track_number, track_features: features });
+            });
+
+          } else {
+
+          _self.Results.push({ title: item.album.name, cover: item.album.images[0].url, 
+            subtitle: item.artists[0].name, uri: item.album.uri, track_number: item.track_number, track_features: {} });
+          }
         }
       });
     }
@@ -149,5 +168,16 @@ export class SpotifySearchComponent implements OnInit {
         });
       });
     }
+  }
+  public trackBreakdown(contextUri: string, id: string): any {
+ return $.ajax({
+      url: 'https://api.spotify.com/v1/audio-features/' + id,
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + this.accessToken,
+        'Accept': "application/json",
+        'Content-Type': "application/json;charset=UTF-8"
+      }
+    });
   }
 }
