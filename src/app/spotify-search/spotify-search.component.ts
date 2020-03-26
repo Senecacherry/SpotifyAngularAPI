@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
+
 declare let Spotify: any;
 declare global {
   interface Window { onSpotifyWebPlaybackSDKReady: any; }
@@ -164,11 +165,16 @@ export class SpotifySearchComponent implements OnInit {
             xhr.setRequestHeader('Authorization', 'Bearer ' + token.access_token);
           }
         }).done(function (data) {
-          $("#searchResult").html(JSON.stringify(data));
+          _self.Results = data;
         });
       });
     }
   }
+
+  public hasResults() {
+    return this.Results.length !== 0 && this.Results !== undefined;
+  }
+
   public trackBreakdown(contextUri: string, id: string): any {
  return $.ajax({
       url: 'https://api.spotify.com/v1/audio-features/' + id,

@@ -6,8 +6,8 @@
     </mat-grid-tile>
 </mat-grid-list>
 
-<button class="searchBtn" mat-raised-button (click)="Search({keyMin: 0, keyMax: 6})">Search</button>
-
+<button *ngIf="hasResults()" class="searchBtn" mat-raised-button (click)="Search({keyMin: 0, keyMax: 6})">Search</button>
+<button *ngIf="!hasResults()" (click)="Search({keyMin: 7, keyMax: 9})">TEST BTN</button>
 <div id="searchResult"></div>
 <!-- put an ngif on the button so if there Results.length < 0 show big button else show the smaller one -->
 <!-- need javascript equavilent of blockUI -->
