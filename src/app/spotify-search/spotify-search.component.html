@@ -7,10 +7,13 @@
 </mat-grid-list>
 
 <button *ngIf="hasResults()" class="searchBtn" mat-raised-button (click)="Search({keyMin: 0, keyMax: 6})">Search</button>
-<button *ngIf="!hasResults()" (click)="Search({keyMin: 7, keyMax: 9})">TEST BTN</button>
+
+<div *ngIf="!hasResults()" class="wrapper">
+<button *ngIf="!hasResults()" class="infoBtn" mat-raised-button (click)="Search({keyMin: 7, keyMax: 9})">WELCOME! CLICK ME FOR SOME GROOVY TUNES</button>
+</div>
+
 <div id="searchResult"></div>
-<!-- put an ngif on the button so if there Results.length < 0 show big button else show the smaller one -->
-<!-- need javascript equavilent of blockUI -->
+<!-- need javascript equavilent of blockUI there is a blockui script that i need to add, function will start when "search" is triggered and unblock when results are pulled. $.blockui and $.unblockui-->
 <!-- try to pipe into news feed or twitter feed to achieve same functionality as weather -->
 
 <!-- First steps:
